@@ -31,6 +31,7 @@
         <Rectangle Fill="Red" Height="50" Width="50" Canvas.Top ="130" Canvas.Left="130"/>
     </Canvas>
 ```
+* Binding Example
 ```xaml
         <ListView x:Name="customerListView" Grid.Row="1" Margin="10 0 10 10">
             <ListViewItem>Julia</ListViewItem>
