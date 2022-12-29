@@ -31,3 +31,19 @@
         <Rectangle Fill="Red" Height="50" Width="50" Canvas.Top ="130" Canvas.Left="130"/>
     </Canvas>
 ```
+```xaml
+        <ListView x:Name="customerListView" Grid.Row="1" Margin="10 0 10 10">
+            <ListViewItem>Julia</ListViewItem>
+            <ListViewItem>Alex</ListViewItem>
+            <ListViewItem>Thomas</ListViewItem>
+        </ListView>
+        <StackPanel Grid.Column="1" Margin="10">
+            <Label>Firstname:</Label>
+            <TextBox Text="{Binding ElementName=customerListView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.Content}"/>
+            <Label>Lastname:</Label>
+            <TextBox/>
+            <CheckBox Margin="0 10 0 0">
+                Is developer
+            </CheckBox>
+        </StackPanel>
+```
