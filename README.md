@@ -40,7 +40,10 @@
         </ListView>
         <StackPanel Grid.Column="1" Margin="10">
             <Label>Firstname:</Label>
-            <TextBox Text="{Binding ElementName=customerListView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.Content}"/>
+            <TextBox Text="{Binding ElementName=customerListView,
+            Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged,
+            Path=SelectedItem.Content}"/>
             <Label>Lastname:</Label>
             <TextBox/>
             <CheckBox Margin="0 10 0 0">
@@ -56,9 +59,12 @@
                           SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}"
                           Margin="10 0 10 10" />
                           
-                     <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel Grid.Column="1" Margin="10">
                 <Label>Firstname:</Label>
-                <TextBox Text="{Binding ElementName=customerListView, Path=SelectedItem.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding ElementName=customerListView,
+                Path=SelectedItem.FirstName,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"/>
                 <Label>Lastname:</Label>
                 <TextBox/>
                 <CheckBox Margin="0 10 0 0">
