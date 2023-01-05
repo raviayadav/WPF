@@ -147,3 +147,74 @@
                 </CheckBox>
             </StackPanel>
 ```
+* INotifyPropertyChanged interface used for raising events on property changes.
+```cs
+    public class CustomersViewModel : INotifyPropertyChanged
+    {
+        private readonly ICustomerDataProvider _customerDataProvider;
+        private Customer? _selectedCustomer;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public CustomersViewModel(ICustomerDataProvider customerDataProvider)
+        {
+            _customerDataProvider = customerDataProvider;
+        }
+        public ObservableCollection<Customer> Customers { get; } = new ObservableCollection<Customer>();
+        public Customer? SelectedCustomer
+        {
+            get => _selectedCustomer;
+            set
+            {
+                _selectedCustomer = value;
+                RaisePropertyChanged(nameof(SelectedCustomer));
+            }
+        }
+        public async Task LoadAsync()
+        {
+            if (Customers.Any())
+            {
+                return;
+            }
+            var customers = await _customerDataProvider.GetAllAsync();
+            if (customers is not null)
+            {
+                foreach (var customer in customers)
+                {
+                    Customers.Add(customer);
+                }
+            }
+        }
+
+        public void Add()
+        {
+            var customer = new Customer { FirstName = "Ravi" };
+            Customers.Add(customer);
+            SelectedCustomer = customer;
+        }
+
+        public void RaisePropertyChanged(string propertyName)
+        {
+            Console.WriteLine(propertyName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+```
+* We can omit using nameof in the event by handling the RaisePropertyChanged method as follows:
+```cs
+        public Customer? SelectedCustomer
+        {
+            get => _selectedCustomer;
+            set
+            {
+                _selectedCustomer = value;
+                RaisePropertyChanged();
+            }
+        }
+        
+        public void RaisePropertyChanged(string propertyName)
+        {
+            Console.WriteLine(propertyName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+```
