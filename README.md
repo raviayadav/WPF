@@ -120,14 +120,12 @@
     }
 ```
 * using selectedCustomer ie giving more power to viewModel
-```cs
-                </StackPanel>
-                <ListView Grid.Row="1"
+```xaml
+            <ListView Grid.Row="1"
                           ItemsSource="{Binding Path=Customers}"
                           DisplayMemberPath="FirstName"
                           SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}"
                           Margin="10 0 10 10" />
-            </Grid>
 
             <!-- Customer detail -->
             <StackPanel Grid.Column="1" Margin="10">
