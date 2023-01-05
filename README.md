@@ -119,3 +119,33 @@
         }
     }
 ```
+* using selectedCustomer ie giving more power to viewModel
+```cs
+                </StackPanel>
+                <ListView Grid.Row="1"
+                          ItemsSource="{Binding Path=Customers}"
+                          DisplayMemberPath="FirstName"
+                          SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}"
+                          Margin="10 0 10 10" />
+            </Grid>
+
+            <!-- Customer detail -->
+            <StackPanel Grid.Column="1" Margin="10">
+                <Label>Firstname:</Label>
+                <TextBox Text="{Binding
+                Path=SelectedCustomer.FirstName,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"/>
+                <Label>Lastname:</Label>
+                <TextBox Text="{Binding
+                Path=SelectedCustomer.LastName,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox IsChecked="{Binding
+                Path=SelectedCustomer.IsDeveloper,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}" Margin="0 10 0 0">
+                    Is developer
+                </CheckBox>
+            </StackPanel>
+```
